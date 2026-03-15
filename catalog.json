@@ -104,7 +104,8 @@
         "IMMICH_VERSION": "release",
         "UPLOAD_LOCATION": "${CONFIG_PATH}/upload",
         "DB_DATA_LOCATION": "${CONFIG_PATH}/postgres"
-      }
+      },
+      "external": true
     },
     "transmission": {
       "name": "Transmission",
