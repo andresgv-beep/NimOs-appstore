@@ -252,14 +252,14 @@
     },
     "matrix": {
       "name": "Matrix (Element)",
-      "description": "Chat cifrado auto-hospedado. Servidor Synapse (oficial Matrix) + cliente web Element.",
+      "description": "Chat cifrado auto-hospedado. Servidor Synapse + cliente Element. Al entrar, indica la dirección de tu servidor.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/element.svg",
       "category": "homelab",
       "port": 8086,
       "image": "vectorim/element-web:latest",
       "official": true,
       "isStack": true,
-      "compose": "name: matrix\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    restart: unless-stopped\n  element-init:\n    image: docker.io/alpine:latest\n    container_name: matrix_element_init\n    volumes:\n      - ${CONFIG_PATH}/element:/config\n    environment:\n      - EL_HOST_IP=${HOST_IP}\n      - EL_SERVER_NAME=${SERVER_NAME}\n    command:\n      - /bin/sh\n      - -c\n      - 'printf %s \"{\\\"default_server_config\\\":{\\\"m.homeserver\\\":{\\\"base_url\\\":\\\"http://$EL_HOST_IP:8008\\\",\\\"server_name\\\":\\\"$EL_SERVER_NAME\\\"}},\\\"disable_custom_urls\\\":false,\\\"brand\\\":\\\"NimChat\\\"}\" > /config/config.json'\n    restart: \"no\"\n  element:\n    image: vectorim/element-web:latest\n    container_name: matrix_element\n    depends_on:\n      element-init:\n        condition: service_completed_successfully\n      synapse:\n        condition: service_started\n    volumes:\n      - ${CONFIG_PATH}/element/config.json:/app/config.json:ro\n    ports:\n      - '8086:80'\n    restart: unless-stopped\n",
+      "compose": "name: matrix\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    restart: unless-stopped\n  element:\n    image: vectorim/element-web:latest\n    container_name: matrix_element\n    depends_on:\n      - synapse\n    ports:\n      - '8086:80'\n    restart: unless-stopped\n",
       "env": {
         "SERVER_NAME": "nimos.local",
         "REGISTRATION_TOKEN": "nimchat"
