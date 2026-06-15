@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updated": "2026-04-06",
+  "updated": "2026-06-15",
   "categories": {
     "system": "Sistema",
     "media": "Multimedia",
@@ -215,7 +215,7 @@
       "port": 8088,
       "image": "pihole/pihole:latest",
       "official": true,
-      "compose": "services:\n  pihole:\n    image: pihole/pihole:latest\n    container_name: pihole\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '8088:80'\n    volumes:\n      - ${CONFIG_PATH}/etc-pihole:/etc/pihole\n      - ${CONFIG_PATH}/etc-dnsmasq.d:/etc/dnsmasq.d\n    environment:\n      - TZ=${TZ}\n      - WEBPASSWORD=${WEBPASSWORD}\n    restart: unless-stopped",
+      "compose": "services:\n  pihole:\n    image: pihole/pihole:latest\n    container_name: pihole\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '8088:80'\n    volumes:\n      - ${CONFIG_PATH}/etc-pihole:/etc/pihole\n      - ${CONFIG_PATH}/etc-dnsmasq.d:/etc/dnsmasq.d\n    environment:\n      - TZ=${TZ}\n      - FTLCONF_webserver_api_password=${WEBPASSWORD}\n      - FTLCONF_dns_listeningMode=all\n    restart: unless-stopped",
       "env": {
         "WEBPASSWORD": "admin"
       },
@@ -249,6 +249,26 @@
         "password": "changeme"
       },
       "openMode": "internal"
+    },
+    "matrix": {
+      "name": "Matrix (Element)",
+      "description": "Chat cifrado auto-hospedado. Servidor continuwuity + cliente web Element.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/element.svg",
+      "category": "homelab",
+      "port": 8086,
+      "image": "vectorim/element-web:latest",
+      "official": true,
+      "isStack": true,
+      "compose": "name: matrix\nservices:\n  continuwuity:\n    image: ghcr.io/continuwuity/continuwuity:latest\n    container_name: continuwuity\n    ports:\n      - '6167:6167'\n    volumes:\n      - ${CONFIG_PATH}/continuwuity:/var/lib/continuwuity\n    environment:\n      - CONTINUWUITY_SERVER_NAME=${SERVER_NAME}\n      - CONTINUWUITY_DATABASE_PATH=/var/lib/continuwuity\n      - CONTINUWUITY_ADDRESS=0.0.0.0\n      - CONTINUWUITY_PORT=6167\n      - CONTINUWUITY_ALLOW_REGISTRATION=true\n      - CONTINUWUITY_REGISTRATION_TOKEN=${REGISTRATION_TOKEN}\n      - CONTINUWUITY_ALLOW_FEDERATION=false\n      - CONTINUWUITY_MAX_REQUEST_SIZE=20000000\n    restart: unless-stopped\n  element:\n    image: vectorim/element-web:latest\n    container_name: element\n    depends_on:\n      - continuwuity\n    entrypoint: [\"/bin/sh\", \"-c\"]\n    command:\n      - echo '{\"default_server_config\":{\"m.homeserver\":{\"base_url\":\"http://${HOST_IP}:6167\",\"server_name\":\"${SERVER_NAME}\"}},\"disable_custom_urls\":false,\"brand\":\"NimChat\"}' > /app/config.json && exec /docker-entrypoint.sh nginx -g 'daemon off;'\n    ports:\n      - '8086:80'\n    restart: unless-stopped",
+      "env": {
+        "SERVER_NAME": "nimos.local",
+        "REGISTRATION_TOKEN": "nimchat"
+      },
+      "credentials": {
+        "passwordKey": "REGISTRATION_TOKEN"
+      },
+      "external": true,
+      "openMode": "external"
     },
     "gitea": {
       "name": "Gitea",
