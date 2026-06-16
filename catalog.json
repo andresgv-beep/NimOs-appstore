@@ -384,7 +384,7 @@
     "ketesa": {
       "name": "Ketesa (Admin Matrix)",
       "description": "Panel web de administración para Matrix (sucesor de Synapse Admin). Crea y gestiona usuarios, tokens de registro, salas y más, desde la web sin terminal. Entra con tu usuario admin de Matrix. Requiere Synapse v1.150.0+. (El primer admin debe crearse aparte; Ketesa gestiona del segundo en adelante.)",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/matrixsynapse.svg",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/ketesa.webp",
       "category": "homelab",
       "port": 8087,
       "image": "ghcr.io/etkecc/ketesa:latest",
