@@ -355,7 +355,7 @@
     "matrix-synapse": {
       "name": "Matrix Server (Synapse)",
       "description": "Servidor Matrix self-hosted (Synapse). Tu propio servidor de chat cifrado. Conéctalo desde Element u otro cliente Matrix usando la URL que te da NimOS.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/element.svg",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/matrixsynapse.svg",
       "category": "homelab",
       "port": 8008,
       "image": "ghcr.io/element-hq/synapse:latest",
@@ -378,6 +378,19 @@
       "official": true,
       "isStack": true,
       "compose": "name: element\nservices:\n  element:\n    image: vectorim/element-web:latest\n    container_name: element_web\n    ports:\n      - '8086:80'\n    restart: unless-stopped\n",
+      "external": true,
+      "openMode": "external"
+    },
+    "ketesa": {
+      "name": "Ketesa (Admin Matrix)",
+      "description": "Panel web de administración para Matrix (sucesor de Synapse Admin). Crea y gestiona usuarios, tokens de registro, salas y más, desde la web sin terminal. Entra con tu usuario admin de Matrix. Requiere Synapse v1.150.0+. (El primer admin debe crearse aparte; Ketesa gestiona del segundo en adelante.)",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/matrixsynapse.svg",
+      "category": "homelab",
+      "port": 8087,
+      "image": "ghcr.io/etkecc/ketesa:latest",
+      "official": true,
+      "isStack": true,
+      "compose": "name: ketesa\nservices:\n  ketesa:\n    image: ghcr.io/etkecc/ketesa:latest\n    container_name: ketesa\n    ports:\n      - '8087:8080'\n    environment:\n      - SERVER_HOST=0.0.0.0\n    restart: unless-stopped\n",
       "external": true,
       "openMode": "external"
     }
