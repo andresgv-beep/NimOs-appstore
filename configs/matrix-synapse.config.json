@@ -6,10 +6,15 @@
       "label": "Nombre del servidor",
       "type": "text",
       "required": true,
-      "auto": { "provider": "domain" },
-      "validation": { "type": "hostname" },
+      "auto": {
+        "provider": "domain",
+        "port": false
+      },
+      "validation": {
+        "type": "hostname"
+      },
       "immutable": true,
-      "hint": "El dominio de tu servidor Matrix (ej. matrix.midominio.org). IMPORTANTE: no se puede cambiar después de instalar."
+      "hint": "El dominio de tu servidor Matrix (ej. matrix.midominio.org). Sin puerto · Caddy lo gestiona. IMPORTANTE: no se cambia después de instalar."
     }
   ],
   "postInstall": [
