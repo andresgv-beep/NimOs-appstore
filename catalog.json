@@ -361,12 +361,11 @@
       "image": "ghcr.io/element-hq/synapse:latest",
       "official": true,
       "isStack": true,
-      "compose": "name: matrix-synapse\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    restart: unless-stopped\n",
-      "env": {
-        "SERVER_NAME": "nimos.local"
-      },
+      "compose": "name: matrix-synapse\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    healthcheck:\n      test: [\"CMD\", \"curl\", \"-fSs\", \"http://localhost:8008/health\"]\n      interval: 15s\n      timeout: 5s\n      retries: 3\n      start_period: 5s\n    restart: unless-stopped\n",
+      "env": {},
       "external": true,
-      "openMode": "external"
+      "openMode": "external",
+      "configRef": "configs/matrix-synapse.config.json"
     },
     "element": {
       "name": "Element",
