@@ -1,0 +1,42 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "SERVER_NAME",
+      "label": "Nombre del servidor",
+      "type": "text",
+      "required": true,
+      "auto": { "provider": "domain" },
+      "validation": { "type": "hostname" },
+      "immutable": true,
+      "hint": "El dominio de tu servidor Matrix (ej. matrix.midominio.org). IMPORTANTE: no se puede cambiar después de instalar."
+    }
+  ],
+  "postInstall": [
+    {
+      "id": "create_admin",
+      "type": "exec",
+      "waitFor": "healthy",
+      "container": "matrix_synapse",
+      "command": "register_new_matrix_user http://localhost:8008 -c /data/homeserver.yaml -u {{ADMIN_USER}} -p {{ADMIN_PASS}} -a",
+      "idempotent": true,
+      "fields": [
+        {
+          "key": "ADMIN_USER",
+          "label": "Usuario administrador",
+          "type": "text",
+          "required": true,
+          "hint": "El nombre del primer usuario administrador (ej. andres)."
+        },
+        {
+          "key": "ADMIN_PASS",
+          "label": "Contraseña del administrador",
+          "type": "password",
+          "required": true,
+          "secret": true,
+          "hint": "La contraseña para el usuario administrador. Elígela tú."
+        }
+      ]
+    }
+  ]
+}
