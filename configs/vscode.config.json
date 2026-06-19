@@ -1,0 +1,13 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "PASSWORD",
+      "label": "Contraseña de acceso",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "La contraseña para entrar a VS Code. Elígela tú (reemplaza la que venía por defecto)."
+    }
+  ]
+}
