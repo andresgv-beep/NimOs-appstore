@@ -263,7 +263,7 @@
     },
     "codeserver": {
       "name": "VS Code Server",
-      "description": "Visual Studio Code en el navegador. Contraseña por defecto: nimbus",
+      "description": "Visual Studio Code en el navegador. Elige tu contraseña al instalar.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/vscode.svg",
       "category": "development",
       "port": 8443,
@@ -271,13 +271,13 @@
       "official": true,
       "compose": "services:\n  codeserver:\n    image: linuxserver/code-server:latest\n    container_name: codeserver\n    ports:\n      - '8443:8443'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${PROJECTS_PATH}:/projects\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n      - PASSWORD=${PASSWORD}\n    restart: unless-stopped",
       "env": {
-        "PASSWORD": "nimbus",
         "PROJECTS_PATH": "${CONFIG_PATH}/projects"
       },
       "credentials": {
         "passwordKey": "PASSWORD"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "configRef": "configs/codeserver.config.json"
     },
     "portainer": {
       "name": "Portainer",
