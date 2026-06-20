@@ -1,0 +1,13 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "VNC_PASSWORD",
+      "label": "Contraseña de acceso",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Protege el acceso al panel web de HandBrake. Elígela tú."
+    }
+  ]
+}

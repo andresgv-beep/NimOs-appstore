@@ -1,0 +1,21 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "N8N_USER",
+      "label": "Usuario",
+      "type": "text",
+      "required": true,
+      "default": "admin",
+      "hint": "El nombre de usuario para entrar a n8n. Por defecto 'admin', puedes cambiarlo."
+    },
+    {
+      "key": "N8N_PASSWORD",
+      "label": "Contraseña",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "La contraseña para entrar a n8n. Elígela tú."
+    }
+  ]
+}
