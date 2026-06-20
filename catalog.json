@@ -299,7 +299,7 @@
       "port": 3001,
       "image": "grafana/grafana:latest",
       "official": true,
-      "compose": "services:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - '3001:3000'\n    volumes:\n      - ${CONFIG_PATH}/data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}\n    restart: unless-stopped",
+      "compose": "services:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - '3001:3000'\n    volumes:\n      - ${CONFIG_PATH}/data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_USER=${ADMIN_USER}\n      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}\n    restart: unless-stopped",
       "env": {},
       "openMode": "internal",
       "configRef": "configs/grafana.config.json"
