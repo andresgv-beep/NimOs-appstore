@@ -87,8 +87,12 @@
       "port": 8384,
       "image": "syncthing/syncthing:latest",
       "official": true,
-      "compose": "services:\n  syncthing:\n    image: syncthing/syncthing:latest\n    container_name: syncthing\n    hostname: nimbusos\n    ports:\n      - '8384:8384'\n      - '22000:22000/tcp'\n      - '22000:22000/udp'\n    volumes:\n      - ${CONFIG_PATH}:/var/syncthing\n    environment:\n      - PUID=1000\n      - PGID=1000\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  syncthing:\n    image: syncthing/syncthing:latest\n    container_name: syncthing\n    hostname: nimbusos\n    ports:\n      - '8384:8384'\n      - '22000:22000/tcp'\n      - '22000:22000/udp'\n    volumes:\n      - ${CONFIG_PATH}:/var/syncthing\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n    restart: unless-stopped",
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "immich": {
       "name": "Immich",
@@ -120,11 +124,15 @@
       "port": 9091,
       "image": "linuxserver/transmission:latest",
       "official": true,
-      "compose": "services:\n  transmission:\n    image: linuxserver/transmission:latest\n    container_name: transmission\n    ports:\n      - '9091:9091'\n      - '51413:51413'\n      - '51413:51413/udp'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "compose": "services:\n  transmission:\n    image: linuxserver/transmission:latest\n    container_name: transmission\n    ports:\n      - '9091:9091'\n      - '51413:51413'\n      - '51413:51413/udp'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "qbittorrent": {
       "name": "qBittorrent",
@@ -134,11 +142,15 @@
       "port": 8081,
       "image": "linuxserver/qbittorrent:latest",
       "official": true,
-      "compose": "services:\n  qbittorrent:\n    image: linuxserver/qbittorrent:latest\n    container_name: qbittorrent\n    ports:\n      - '8081:8081'\n      - '6881:6881'\n      - '6881:6881/udp'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n      - WEBUI_PORT=8081\n    restart: unless-stopped",
+      "compose": "services:\n  qbittorrent:\n    image: linuxserver/qbittorrent:latest\n    container_name: qbittorrent\n    ports:\n      - '8081:8081'\n      - '6881:6881'\n      - '6881:6881/udp'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - WEBUI_PORT=8081\n    restart: unless-stopped",
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "sonarr": {
       "name": "Sonarr",
@@ -148,12 +160,16 @@
       "port": 8989,
       "image": "linuxserver/sonarr:latest",
       "official": true,
-      "compose": "services:\n  sonarr:\n    image: linuxserver/sonarr:latest\n    container_name: sonarr\n    ports:\n      - '8989:8989'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${MEDIA_PATH}/tv:/tv\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "compose": "services:\n  sonarr:\n    image: linuxserver/sonarr:latest\n    container_name: sonarr\n    ports:\n      - '8989:8989'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${MEDIA_PATH}/tv:/tv\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads",
         "MEDIA_PATH": "${CONFIG_PATH}/media"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "radarr": {
       "name": "Radarr",
@@ -163,12 +179,16 @@
       "port": 7878,
       "image": "linuxserver/radarr:latest",
       "official": true,
-      "compose": "services:\n  radarr:\n    image: linuxserver/radarr:latest\n    container_name: radarr\n    ports:\n      - '7878:7878'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${MEDIA_PATH}/movies:/movies\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "compose": "services:\n  radarr:\n    image: linuxserver/radarr:latest\n    container_name: radarr\n    ports:\n      - '7878:7878'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${MEDIA_PATH}/movies:/movies\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads",
         "MEDIA_PATH": "${CONFIG_PATH}/media"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "prowlarr": {
       "name": "Prowlarr",
@@ -178,8 +198,12 @@
       "port": 9696,
       "image": "linuxserver/prowlarr:latest",
       "official": true,
-      "compose": "services:\n  prowlarr:\n    image: linuxserver/prowlarr:latest\n    container_name: prowlarr\n    ports:\n      - '9696:9696'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  prowlarr:\n    image: linuxserver/prowlarr:latest\n    container_name: prowlarr\n    ports:\n      - '9696:9696'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "homeassistant": {
       "name": "Home Assistant",
@@ -241,8 +265,12 @@
       "port": 3000,
       "image": "gitea/gitea:latest",
       "official": true,
-      "compose": "services:\n  gitea:\n    image: gitea/gitea:latest\n    container_name: gitea\n    ports:\n      - '3000:3000'\n      - '2222:22'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - /etc/timezone:/etc/timezone:ro\n      - /etc/localtime:/etc/localtime:ro\n    environment:\n      - USER_UID=1000\n      - USER_GID=1000\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  gitea:\n    image: gitea/gitea:latest\n    container_name: gitea\n    ports:\n      - '3000:3000'\n      - '2222:22'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - /etc/timezone:/etc/timezone:ro\n      - /etc/localtime:/etc/localtime:ro\n    environment:\n      - USER_UID=${USER_UID}\n      - USER_GID=${USER_GID}\n    restart: unless-stopped",
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "USER_UID",
+        "gidEnv": "USER_GID"
+      }
     },
     "codeserver": {
       "name": "VS Code Server",
@@ -252,12 +280,16 @@
       "port": 8443,
       "image": "linuxserver/code-server:latest",
       "official": true,
-      "compose": "services:\n  codeserver:\n    image: linuxserver/code-server:latest\n    container_name: codeserver\n    ports:\n      - '8443:8443'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${PROJECTS_PATH}:/projects\n    environment:\n      - PUID=1000\n      - PGID=1000\n      - TZ=${TZ}\n      - PASSWORD=${PASSWORD}\n    restart: unless-stopped",
+      "compose": "services:\n  codeserver:\n    image: linuxserver/code-server:latest\n    container_name: codeserver\n    ports:\n      - '8443:8443'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${PROJECTS_PATH}:/projects\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - PASSWORD=${PASSWORD}\n    restart: unless-stopped",
       "env": {
         "PROJECTS_PATH": "${CONFIG_PATH}/projects"
       },
       "openMode": "internal",
-      "configRef": "configs/codeserver.config.json"
+      "configRef": "configs/codeserver.config.json",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     },
     "portainer": {
       "name": "Portainer",
@@ -336,11 +368,15 @@
       "image": "ghcr.io/element-hq/synapse:latest",
       "official": true,
       "isStack": true,
-      "compose": "name: matrix-synapse\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    healthcheck:\n      test: [\"CMD\", \"curl\", \"-fSs\", \"http://localhost:8008/health\"]\n      interval: 15s\n      timeout: 5s\n      retries: 3\n      start_period: 5s\n    restart: unless-stopped\n",
+      "compose": "name: matrix-synapse\nservices:\n  synapse:\n    image: ghcr.io/element-hq/synapse:latest\n    container_name: matrix_synapse\n    ports:\n      - '8008:8008'\n    volumes:\n      - ${CONFIG_PATH}/synapse:/data\n    environment:\n      - SYNAPSE_SERVER_NAME=${SERVER_NAME}\n      - SYNAPSE_REPORT_STATS=no\n      - UID=${UID}\n      - GID=${GID}\n    entrypoint:\n      - /bin/sh\n      - -c\n      - 'if [ ! -f /data/homeserver.yaml ]; then /start.py generate; fi; exec /start.py'\n    healthcheck:\n      test: [\"CMD\", \"curl\", \"-fSs\", \"http://localhost:8008/health\"]\n      interval: 15s\n      timeout: 5s\n      retries: 3\n      start_period: 5s\n    restart: unless-stopped\n",
       "env": {},
       "external": true,
       "openMode": "external",
-      "configRef": "configs/matrix-synapse.config.json"
+      "configRef": "configs/matrix-synapse.config.json",
+      "runtimeIdentity": {
+        "uidEnv": "UID",
+        "gidEnv": "GID"
+      }
     },
     "element": {
       "name": "Element",
