@@ -89,21 +89,6 @@
       "compose": "services:\n  syncthing:\n    image: syncthing/syncthing:latest\n    container_name: syncthing\n    hostname: nimbusos\n    ports:\n      - '8384:8384'\n      - '22000:22000/tcp'\n      - '22000:22000/udp'\n    volumes:\n      - ${CONFIG_PATH}:/var/syncthing\n    environment:\n      - PUID=1000\n      - PGID=1000\n    restart: unless-stopped",
       "openMode": "internal"
     },
-    "filebrowser": {
-      "name": "File Browser",
-      "description": "Explorador de archivos web con interfaz moderna.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/filebrowser.svg",
-      "category": "cloud",
-      "port": 8085,
-      "image": "filebrowser/filebrowser:latest",
-      "official": true,
-      "compose": "services:\n  filebrowser:\n    image: filebrowser/filebrowser:latest\n    container_name: filebrowser\n    ports:\n      - '8085:80'\n    volumes:\n      - ${CONFIG_PATH}/database.db:/database.db\n      - ${DATA_PATH}:/srv\n    environment:\n      - PUID=1000\n      - PGID=1000\n    restart: unless-stopped",
-      "credentials": {
-        "username": "admin",
-        "password": "admin"
-      },
-      "openMode": "internal"
-    },
     "immich": {
       "name": "Immich",
       "description": "Gestión de fotos y vídeos con IA. Alternativa a Google Photos.",
@@ -209,20 +194,20 @@
     },
     "pihole": {
       "name": "Pi-hole",
-      "description": "Bloqueo de publicidad a nivel de red DNS.",
+      "description": "Bloqueo de publicidad a nivel de red DNS. Elige tu contraseña al instalar.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pi-hole.svg",
       "category": "homelab",
       "port": 8088,
       "image": "pihole/pihole:latest",
       "official": true,
       "compose": "services:\n  pihole:\n    image: pihole/pihole:latest\n    container_name: pihole\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '8088:80'\n    volumes:\n      - ${CONFIG_PATH}/etc-pihole:/etc/pihole\n      - ${CONFIG_PATH}/etc-dnsmasq.d:/etc/dnsmasq.d\n    environment:\n      - TZ=${TZ}\n      - FTLCONF_webserver_api_password=${WEBPASSWORD}\n      - FTLCONF_dns_listeningMode=all\n    restart: unless-stopped",
-      "env": {
-        "WEBPASSWORD": "admin"
-      },
+      "env": {},
       "credentials": {
         "passwordKey": "WEBPASSWORD"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "configRef": "configs/pihole.config.json",
+      "landingPath": "/admin"
     },
     "adguard": {
       "name": "AdGuard Home",
@@ -237,7 +222,7 @@
     },
     "nginx-proxy": {
       "name": "Nginx Proxy Manager",
-      "description": "Proxy reverso con SSL automático.",
+      "description": "Gestor de proxy inverso con interfaz web. Primer acceso: admin@example.com / changeme (cámbialo al entrar).",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/nginx.svg",
       "category": "homelab",
       "port": 81,
@@ -314,21 +299,20 @@
     },
     "grafana": {
       "name": "Grafana",
-      "description": "Dashboards y visualización de métricas.",
+      "description": "Dashboards y visualización de métricas. Elige tu contraseña al instalar (usuario: admin).",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/grafana.svg",
       "category": "monitoring",
       "port": 3001,
       "image": "grafana/grafana:latest",
       "official": true,
       "compose": "services:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - '3001:3000'\n    volumes:\n      - ${CONFIG_PATH}/data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}\n    restart: unless-stopped",
-      "env": {
-        "ADMIN_PASSWORD": "admin"
-      },
+      "env": {},
       "credentials": {
         "username": "admin",
         "passwordKey": "ADMIN_PASSWORD"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "configRef": "configs/grafana.config.json"
     },
     "prometheus": {
       "name": "Prometheus",
