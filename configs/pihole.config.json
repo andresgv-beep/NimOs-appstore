@@ -1,0 +1,13 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "WEBPASSWORD",
+      "label": "Contraseña del panel",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "La contraseña para entrar al panel de administración de Pi-hole. Elígela tú."
+    }
+  ]
+}
