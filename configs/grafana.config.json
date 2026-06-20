@@ -2,12 +2,20 @@
   "configVersion": 1,
   "configFields": [
     {
+      "key": "ADMIN_USER",
+      "label": "Usuario administrador",
+      "type": "text",
+      "required": true,
+      "default": "admin",
+      "hint": "El nombre de usuario para entrar a Grafana. Por defecto 'admin', puedes cambiarlo."
+    },
+    {
       "key": "ADMIN_PASSWORD",
       "label": "Contraseña de administrador",
       "type": "password",
       "required": true,
       "secret": true,
-      "hint": "La contraseña para el usuario 'admin' de Grafana. Elígela tú (el usuario es 'admin')."
+      "hint": "La contraseña para entrar a Grafana. Elígela tú."
     }
   ]
 }
