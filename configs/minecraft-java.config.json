@@ -1,0 +1,42 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "EULA",
+      "label": "Acepto el EULA de Minecraft",
+      "type": "toggle",
+      "required": true,
+      "hint": "Debes aceptar el Acuerdo de Licencia de Usuario Final de Minecraft (Mojang/Microsoft) para ejecutar el servidor. Más info: https://www.minecraft.net/eula"
+    },
+    {
+      "key": "MC_PORT",
+      "label": "Puerto del servidor",
+      "type": "number",
+      "required": true,
+      "default": "25565",
+      "validation": {
+        "type": "port"
+      },
+      "hint": "Puerto por el que se conectan los jugadores (por defecto 25565). Si vas a tener varios servidores, dale a cada uno un puerto distinto (25565, 25566, 25567...).",
+      "purpose": "network_port",
+      "protocol": "tcp"
+    },
+    {
+      "key": "MEMORY",
+      "label": "Memoria RAM",
+      "type": "text",
+      "required": true,
+      "default": "2G",
+      "hint": "Cuánta RAM asignar al servidor (ej. 2G, 4G). En Raspberry Pi usa valores bajos (1G-2G)."
+    },
+    {
+      "key": "RCON_PASSWORD",
+      "label": "Contraseña RCON (administración)",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Contraseña para administrar el servidor remotamente. Elígela tú.",
+      "purpose": "secret"
+    }
+  ]
+}
