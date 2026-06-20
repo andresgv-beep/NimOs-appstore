@@ -9,7 +9,8 @@
     "homelab": "Home Lab",
     "development": "Desarrollo",
     "security": "Seguridad",
-    "monitoring": "Monitorización"
+    "monitoring": "Monitorización",
+    "games": "Juegos"
   },
   "apps": {
     "docker-engine": {
@@ -371,7 +372,7 @@
       "name": "HandBrake",
       "description": "Convierte y comprime vídeos. Mete los archivos en la carpeta 'storage' de la app y los convertidos saldrán en 'output'. Elige tu contraseña al instalar.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/handbrake.svg",
-      "category": "multimedia",
+      "category": "media",
       "port": 5817,
       "image": "jlesage/handbrake:latest",
       "official": true,
@@ -387,7 +388,7 @@
       "name": "n8n",
       "description": "Automatización de flujos de trabajo sin código. Conecta apps y automatiza tareas. Al abrirla por primera vez, crea tu cuenta de administrador.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/n8n.svg",
-      "category": "productividad",
+      "category": "development",
       "port": 5678,
       "image": "docker.n8n.io/n8nio/n8n:latest",
       "official": true,
@@ -398,6 +399,27 @@
         "amd64",
         "arm64"
       ]
+    },
+    "minecraft-java": {
+      "name": "Minecraft Java Server",
+      "description": "Servidor de Minecraft Java Edition (para PC). Conéctate con el cliente de Minecraft a la IP del NAS, puerto 25565. Debes aceptar el EULA al instalar.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/minecraft.svg",
+      "category": "games",
+      "port": 25565,
+      "image": "itzg/minecraft-server:latest",
+      "official": true,
+      "compose": "services:\n  minecraft:\n    image: itzg/minecraft-server:latest\n    container_name: minecraft-java\n    tty: true\n    stdin_open: true\n    ports:\n      - '${MC_PORT}:25565'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - TZ=${TZ}\n      - EULA=${EULA}\n      - MEMORY=${MEMORY}\n      - ENABLE_RCON=true\n      - RCON_PASSWORD=${RCON_PASSWORD}\n      - TYPE=VANILLA\n      - VERSION=LATEST\n    restart: unless-stopped",
+      "env": {},
+      "openMode": "game",
+      "configRef": "configs/minecraft-java.config.json",
+      "arch": [
+        "amd64",
+        "arm64"
+      ],
+      "game": {
+        "rcon": true,
+        "protocol": "tcp"
+      }
     }
   }
 }
