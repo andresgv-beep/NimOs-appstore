@@ -202,9 +202,6 @@
       "official": true,
       "compose": "services:\n  pihole:\n    image: pihole/pihole:latest\n    container_name: pihole\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '8088:80'\n    volumes:\n      - ${CONFIG_PATH}/etc-pihole:/etc/pihole\n      - ${CONFIG_PATH}/etc-dnsmasq.d:/etc/dnsmasq.d\n    environment:\n      - TZ=${TZ}\n      - FTLCONF_webserver_api_password=${WEBPASSWORD}\n      - FTLCONF_dns_listeningMode=all\n    restart: unless-stopped",
       "env": {},
-      "credentials": {
-        "passwordKey": "WEBPASSWORD"
-      },
       "openMode": "internal",
       "configRef": "configs/pihole.config.json",
       "landingPath": "/admin"
@@ -258,9 +255,6 @@
       "env": {
         "PROJECTS_PATH": "${CONFIG_PATH}/projects"
       },
-      "credentials": {
-        "passwordKey": "PASSWORD"
-      },
       "openMode": "internal",
       "configRef": "configs/codeserver.config.json"
     },
@@ -307,10 +301,6 @@
       "official": true,
       "compose": "services:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - '3001:3000'\n    volumes:\n      - ${CONFIG_PATH}/data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}\n    restart: unless-stopped",
       "env": {},
-      "credentials": {
-        "username": "admin",
-        "passwordKey": "ADMIN_PASSWORD"
-      },
       "openMode": "internal",
       "configRef": "configs/grafana.config.json"
     },
