@@ -408,7 +408,7 @@
       "port": 25565,
       "image": "itzg/minecraft-server:latest",
       "official": true,
-      "compose": "services:\n  minecraft:\n    image: itzg/minecraft-server:latest\n    container_name: minecraft-java\n    tty: true\n    stdin_open: true\n    ports:\n      - '${MC_PORT}:25565'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - TZ=${TZ}\n      - EULA=${EULA}\n      - MEMORY=${MEMORY}\n      - ENABLE_RCON=true\n      - RCON_PASSWORD=${RCON_PASSWORD}\n      - TYPE=VANILLA\n      - VERSION=LATEST\n    restart: unless-stopped",
+      "compose": "services:\n  minecraft:\n    image: itzg/minecraft-server:latest\n    container_name: minecraft-java\n    tty: true\n    stdin_open: true\n    ports:\n      - '${MC_PORT}:25565'\n      - '127.0.0.1:25575:25575'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - TZ=${TZ}\n      - EULA=${EULA}\n      - MEMORY=${MEMORY}\n      - ENABLE_RCON=true\n      - RCON_PASSWORD=${RCON_PASSWORD}\n      - TYPE=VANILLA\n      - VERSION=LATEST\n    restart: unless-stopped",
       "env": {},
       "openMode": "game",
       "configRef": "configs/minecraft-java.config.json",
@@ -417,8 +417,11 @@
         "arm64"
       ],
       "game": {
-        "rcon": true,
-        "protocol": "tcp"
+        "protocol": "tcp",
+        "rcon": {
+          "passwordEnv": "RCON_PASSWORD",
+          "port": 25575
+        }
       }
     }
   }
