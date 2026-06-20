@@ -385,16 +385,15 @@
     },
     "n8n": {
       "name": "n8n",
-      "description": "Automatización de flujos de trabajo sin código. Conecta apps y automatiza tareas. Elige usuario y contraseña al instalar.",
+      "description": "Automatización de flujos de trabajo sin código. Conecta apps y automatiza tareas. Al abrirla por primera vez, crea tu cuenta de administrador.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/n8n.svg",
       "category": "productividad",
       "port": 5678,
       "image": "docker.n8n.io/n8nio/n8n:latest",
       "official": true,
-      "compose": "services:\n  n8n:\n    image: docker.n8n.io/n8nio/n8n:latest\n    container_name: n8n\n    ports:\n      - '5678:5678'\n    volumes:\n      - ${CONFIG_PATH}/data:/home/node/.n8n\n    environment:\n      - TZ=${TZ}\n      - GENERIC_TIMEZONE=${TZ}\n      - N8N_BASIC_AUTH_ACTIVE=true\n      - N8N_BASIC_AUTH_USER=${N8N_USER}\n      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD}\n      - N8N_SECURE_COOKIE=false\n    restart: unless-stopped",
+      "compose": "services:\n  n8n:\n    image: docker.n8n.io/n8nio/n8n:latest\n    container_name: n8n\n    ports:\n      - '5678:5678'\n    volumes:\n      - ${CONFIG_PATH}/data:/home/node/.n8n\n    environment:\n      - TZ=${TZ}\n      - GENERIC_TIMEZONE=${TZ}\n      - N8N_SECURE_COOKIE=false\n    restart: unless-stopped",
       "env": {},
       "openMode": "internal",
-      "configRef": "configs/n8n.config.json",
       "arch": [
         "amd64",
         "arm64"
