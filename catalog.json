@@ -366,6 +366,32 @@
       "compose": "name: ketesa\nservices:\n  ketesa:\n    image: ghcr.io/etkecc/ketesa:latest\n    container_name: ketesa\n    ports:\n      - '8087:8080'\n    environment:\n      - SERVER_HOST=0.0.0.0\n    restart: unless-stopped\n",
       "external": true,
       "openMode": "external"
+    },
+    "handbrake": {
+      "name": "HandBrake",
+      "description": "Convierte y comprime vídeos. Mete los archivos en la carpeta 'storage' de la app y los convertidos saldrán en 'output'. Elige tu contraseña al instalar.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/handbrake.svg",
+      "category": "multimedia",
+      "port": 5817,
+      "image": "jlesage/handbrake:latest",
+      "official": true,
+      "compose": "services:\n  handbrake:\n    image: jlesage/handbrake:latest\n    container_name: handbrake\n    ports:\n      - '5817:5800'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/storage:/storage\n      - ${CONFIG_PATH}/watch:/watch\n      - ${CONFIG_PATH}/output:/output\n    environment:\n      - TZ=${TZ}\n      - VNC_PASSWORD=${VNC_PASSWORD}\n      - KEEP_APP_RUNNING=1\n    restart: unless-stopped",
+      "env": {},
+      "openMode": "internal",
+      "configRef": "configs/handbrake.config.json"
+    },
+    "n8n": {
+      "name": "n8n",
+      "description": "Automatización de flujos de trabajo sin código. Conecta apps y automatiza tareas. Elige usuario y contraseña al instalar.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/n8n.svg",
+      "category": "productividad",
+      "port": 5678,
+      "image": "docker.n8n.io/n8nio/n8n:latest",
+      "official": true,
+      "compose": "services:\n  n8n:\n    image: docker.n8n.io/n8nio/n8n:latest\n    container_name: n8n\n    ports:\n      - '5678:5678'\n    volumes:\n      - ${CONFIG_PATH}/data:/home/node/.n8n\n    environment:\n      - TZ=${TZ}\n      - GENERIC_TIMEZONE=${TZ}\n      - N8N_BASIC_AUTH_ACTIVE=true\n      - N8N_BASIC_AUTH_USER=${N8N_USER}\n      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD}\n      - N8N_SECURE_COOKIE=false\n    restart: unless-stopped",
+      "env": {},
+      "openMode": "internal",
+      "configRef": "configs/n8n.config.json"
     }
   }
 }
