@@ -314,17 +314,6 @@
       "compose": "services:\n  vaultwarden:\n    image: vaultwarden/server:latest\n    container_name: vaultwarden\n    ports:\n      - '8082:80'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - WEBSOCKET_ENABLED=true\n    restart: unless-stopped",
       "openMode": "internal"
     },
-    "authelia": {
-      "name": "Authelia",
-      "description": "Autenticación y autorización SSO.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/authelia.svg",
-      "category": "security",
-      "port": 9092,
-      "image": "authelia/authelia:latest",
-      "official": true,
-      "compose": "services:\n  authelia:\n    image: authelia/authelia:latest\n    container_name: authelia\n    ports:\n      - '9092:9091'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal"
-    },
     "grafana": {
       "name": "Grafana",
       "description": "Dashboards y visualización de métricas. Elige tu contraseña al instalar (usuario: admin).",
