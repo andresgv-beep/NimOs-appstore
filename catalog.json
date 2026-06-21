@@ -450,6 +450,52 @@
           "port": 25575
         }
       }
+    },
+    "metube": {
+      "name": "MeTube",
+      "description": "Descargador de vídeo web (yt-dlp) para YouTube y cientos de sitios. Pega la URL y descarga al NAS.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/metube.svg",
+      "category": "downloads",
+      "port": 8081,
+      "image": "ghcr.io/alexta69/metube:latest",
+      "official": true,
+      "compose": "services:\n  metube:\n    image: ghcr.io/alexta69/metube:latest\n    container_name: metube\n    ports:\n      - '8081:8081'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - UID=${UID}\n      - GID=${GID}\n      - TZ=${TZ}\n      - STATE_DIR=/config/.metube\n    restart: unless-stopped",
+      "env": {
+        "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
+      },
+      "openMode": "internal",
+      "runtimeIdentity": {
+        "uidEnv": "UID",
+        "gidEnv": "GID"
+      }
+    },
+    "pinchflat": {
+      "name": "Pinchflat",
+      "description": "Archivador de canales y playlists de YouTube (yt-dlp). Librería compatible con Jellyfin/Plex/Kodi.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pinchflat.svg",
+      "category": "downloads",
+      "port": 8945,
+      "image": "ghcr.io/kieraneglin/pinchflat:latest",
+      "official": true,
+      "compose": "services:\n  pinchflat:\n    image: ghcr.io/kieraneglin/pinchflat:latest\n    container_name: pinchflat\n    ports:\n      - '8945:8945'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "env": {
+        "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
+      },
+      "openMode": "internal"
+    },
+    "kiwix": {
+      "name": "Kiwix",
+      "description": "Servidor de contenido offline (.zim): Wikipedia, Stack Exchange, Gutenberg, DevDocs… en tu red local.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/kiwix.svg",
+      "category": "homelab",
+      "port": 8080,
+      "image": "ghcr.io/kiwix/kiwix-serve:latest",
+      "official": true,
+      "compose": "services:\n  kiwix:\n    image: ghcr.io/kiwix/kiwix-serve:latest\n    container_name: kiwix\n    command: \"*.zim\"\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${KIWIX_DATA_PATH}:/data\n    restart: unless-stopped",
+      "env": {
+        "KIWIX_DATA_PATH": "${CONFIG_PATH}/data"
+      },
+      "openMode": "internal"
     }
   }
 }
