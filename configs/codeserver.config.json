@@ -8,6 +8,19 @@
       "required": true,
       "secret": true,
       "hint": "La contraseña para entrar a VS Code. Elígela tú (reemplaza la que venía por defecto)."
+    },
+    {
+      "key": "CODE_PORT",
+      "label": "Puerto web",
+      "type": "number",
+      "required": true,
+      "default": "8443",
+      "validation": {
+        "type": "port"
+      },
+      "hint": "Puerto por el que accederás a VS Code. Cámbialo si el 8443 ya está ocupado por otra app.",
+      "purpose": "network_port",
+      "protocol": "tcp"
     }
   ]
 }
