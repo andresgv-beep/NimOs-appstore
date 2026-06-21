@@ -1,0 +1,21 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "DEFAULT_EMAIL",
+      "label": "Email del administrador",
+      "type": "text",
+      "required": true,
+      "default": "admin@nimos.local",
+      "hint": "El email con el que entrarás como admin de Mealie."
+    },
+    {
+      "key": "DEFAULT_PASSWORD",
+      "label": "Contraseña del administrador",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Tu contraseña de admin. Elígela tú · reemplaza la 'MyPassword' por defecto. (Mealie puede pedirte confirmarla en el primer login.)"
+    }
+  ]
+}
