@@ -1,0 +1,28 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "WEBUI_USER",
+      "label": "Usuario del WebUI",
+      "type": "text",
+      "required": true,
+      "default": "admin",
+      "hint": "El usuario para entrar a la web de qBittorrent."
+    },
+    {
+      "key": "WEBUI_PASS",
+      "label": "Contraseña del WebUI",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "La contraseña para entrar a qBittorrent. Elígela tú · reemplaza la temporal que generaba en los logs."
+    }
+  ],
+  "seedFiles": [
+    {
+      "path": "config/qBittorrent/qBittorrent.conf",
+      "skipIfExists": true,
+      "content": "[AutoRun]\nenabled=false\nprogram=\n[BitTorrent]\nSession\\AddTorrentStopped=false\nSession\\DefaultSavePath=/downloads/\nSession\\Port=6881\nSession\\QueueingSystemEnabled=true\nSession\\SSL\\Port=12853\nSession\\ShareLimitAction=Stop\nSession\\TempPath=/downloads/incomplete/\n[LegalNotice]\nAccepted=true\n[Meta]\nMigrationVersion=8\n[Network]\nPortForwardingEnabled=false\nProxy\\HostnameLookupEnabled=false\nProxy\\Profiles\\BitTorrent=true\nProxy\\Profiles\\Misc=true\nProxy\\Profiles\\RSS=true\n[Preferences]\nConnection\\PortRangeMin=6881\nConnection\\UPnP=false\nDownloads\\SavePath=/downloads/\nDownloads\\TempPath=/downloads/incomplete/\nWebUI\\Address=*\nWebUI\\Port=8081\nWebUI\\ServerDomains=*\nWebUI\\Username={{WEBUI_USER}}\nWebUI\\Password_PBKDF2=\"{{QBT_PBKDF2:WEBUI_PASS}}\"\n"
+    }
+  ]
+}
