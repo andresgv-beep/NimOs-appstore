@@ -347,7 +347,8 @@
       "image": "prom/prometheus:latest",
       "official": true,
       "compose": "services:\n  prometheus:\n    image: prom/prometheus:latest\n    container_name: prometheus\n    ports:\n      - '9090:9090'\n    volumes:\n      - ${CONFIG_PATH}/config:/etc/prometheus\n      - ${CONFIG_PATH}/data:/prometheus\n    restart: unless-stopped",
-      "openMode": "internal"
+      "openMode": "internal",
+      "configRef": "configs/prometheus.config.json"
     },
     "uptime-kuma": {
       "name": "Uptime Kuma",
