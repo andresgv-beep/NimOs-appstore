@@ -488,13 +488,13 @@
     },
     "kiwix": {
       "name": "Kiwix",
-      "description": "Servidor de contenido offline (.zim): Wikipedia, Stack Exchange, Gutenberg, DevDocs… en tu red local.",
+      "description": "Servidor de contenido offline (.zim): Wikipedia, Stack Exchange, Gutenberg, DevDocs… Arranca con una mini-Wikipedia de demo; añade tus .zim en la carpeta 'data' y reinicia.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/kiwix.svg",
       "category": "homelab",
       "port": 8080,
       "image": "ghcr.io/kiwix/kiwix-serve:latest",
       "official": true,
-      "compose": "services:\n  kiwix:\n    image: ghcr.io/kiwix/kiwix-serve:latest\n    container_name: kiwix\n    command: \"*.zim\"\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${KIWIX_DATA_PATH}:/data\n    restart: unless-stopped",
+      "compose": "services:\n  kiwix:\n    image: ghcr.io/kiwix/kiwix-serve:latest\n    container_name: kiwix\n    entrypoint: [\"/bin/sh\", \"-c\"]\n    command:\n      - \"if ! ls /data/*.zim >/dev/null 2>&1; then echo 'Kiwix: sembrando ZIM demo (primer arranque)...'; wget -O /data/demo.zim.part 'https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini_2026-04.zim' && mv /data/demo.zim.part /data/demo.zim || rm -f /data/demo.zim.part; fi; exec /usr/local/bin/kiwix-serve --port=8080 /data/*.zim\"\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${KIWIX_DATA_PATH}:/data\n    restart: unless-stopped",
       "env": {
         "KIWIX_DATA_PATH": "${CONFIG_PATH}/data"
       },
