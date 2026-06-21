@@ -31,8 +31,7 @@
       "port": 8096,
       "image": "jellyfin/jellyfin:latest",
       "official": true,
-      "compose": "services:\n  jellyfin:\n    image: jellyfin/jellyfin:latest\n    container_name: jellyfin\n    ports:\n      - '8096:8096'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/cache:/cache\n    environment:\n      - JELLYFIN_PublishedServerUrl=${HOST_IP}\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  jellyfin:\n    image: jellyfin/jellyfin:latest\n    container_name: jellyfin\n    ports:\n      - '8096:8096'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/cache:/cache\n    environment:\n      - JELLYFIN_PublishedServerUrl=${HOST_IP}\n    restart: unless-stopped"
     },
     "plex": {
       "name": "Plex",
@@ -42,8 +41,7 @@
       "port": 32400,
       "image": "plexinc/pms-docker:latest",
       "official": true,
-      "compose": "services:\n  plex:\n    image: plexinc/pms-docker:latest\n    container_name: plex\n    ports:\n      - '32400:32400'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/transcode:/transcode\n    environment:\n      - PLEX_CLAIM=${PLEX_CLAIM}\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  plex:\n    image: plexinc/pms-docker:latest\n    container_name: plex\n    ports:\n      - '32400:32400'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/transcode:/transcode\n    environment:\n      - PLEX_CLAIM=${PLEX_CLAIM}\n      - TZ=${TZ}\n    restart: unless-stopped"
     },
     "emby": {
       "name": "Emby",
@@ -53,8 +51,7 @@
       "port": 8096,
       "image": "emby/embyserver:latest",
       "official": true,
-      "compose": "services:\n  emby:\n    image: emby/embyserver:latest\n    container_name: emby\n    ports:\n      - '8920:8096'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  emby:\n    image: emby/embyserver:latest\n    container_name: emby\n    ports:\n      - '8920:8096'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped"
     },
     "navidrome": {
       "name": "Navidrome",
@@ -76,8 +73,7 @@
       "port": 8080,
       "image": "nextcloud:latest",
       "official": true,
-      "compose": "services:\n  nextcloud:\n    image: nextcloud:latest\n    container_name: nextcloud\n    ports:\n      - '8080:80'\n    volumes:\n      - ${CONFIG_PATH}/html:/var/www/html\n      - ${CONFIG_PATH}/data:/var/www/html/data\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  nextcloud:\n    image: nextcloud:latest\n    container_name: nextcloud\n    ports:\n      - '8080:80'\n    volumes:\n      - ${CONFIG_PATH}/html:/var/www/html\n      - ${CONFIG_PATH}/data:/var/www/html/data\n    environment:\n      - TZ=${TZ}\n    restart: unless-stopped"
     },
     "syncthing": {
       "name": "Syncthing",
@@ -88,7 +84,6 @@
       "image": "syncthing/syncthing:latest",
       "official": true,
       "compose": "services:\n  syncthing:\n    image: syncthing/syncthing:latest\n    container_name: syncthing\n    hostname: nimbusos\n    ports:\n      - '8384:8384'\n      - '22000:22000/tcp'\n      - '22000:22000/udp'\n    volumes:\n      - ${CONFIG_PATH}:/var/syncthing\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n    restart: unless-stopped",
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -128,7 +123,6 @@
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -146,7 +140,6 @@
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -166,7 +159,6 @@
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads",
         "MEDIA_PATH": "${CONFIG_PATH}/media"
       },
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -185,7 +177,6 @@
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads",
         "MEDIA_PATH": "${CONFIG_PATH}/media"
       },
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -200,7 +191,6 @@
       "image": "linuxserver/prowlarr:latest",
       "official": true,
       "compose": "services:\n  prowlarr:\n    image: linuxserver/prowlarr:latest\n    container_name: prowlarr\n    ports:\n      - '9696:9696'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
@@ -228,7 +218,6 @@
       "official": true,
       "compose": "services:\n  pihole:\n    image: pihole/pihole:latest\n    container_name: pihole\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '8088:80'\n    volumes:\n      - ${CONFIG_PATH}/etc-pihole:/etc/pihole\n      - ${CONFIG_PATH}/etc-dnsmasq.d:/etc/dnsmasq.d\n    environment:\n      - TZ=${TZ}\n      - FTLCONF_webserver_api_password=${WEBPASSWORD}\n      - FTLCONF_dns_listeningMode=all\n    restart: unless-stopped",
       "env": {},
-      "openMode": "internal",
       "configRef": "configs/pihole.config.json",
       "landingPath": "/admin"
     },
@@ -240,8 +229,7 @@
       "port": 3000,
       "image": "adguard/adguardhome:latest",
       "official": true,
-      "compose": "services:\n  adguard:\n    image: adguard/adguardhome:latest\n    container_name: adguard\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '3000:3000'\n      - '8083:80'\n    volumes:\n      - ${CONFIG_PATH}/work:/opt/adguardhome/work\n      - ${CONFIG_PATH}/conf:/opt/adguardhome/conf\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  adguard:\n    image: adguard/adguardhome:latest\n    container_name: adguard\n    ports:\n      - '53:53/tcp'\n      - '53:53/udp'\n      - '3000:3000'\n      - '8083:80'\n    volumes:\n      - ${CONFIG_PATH}/work:/opt/adguardhome/work\n      - ${CONFIG_PATH}/conf:/opt/adguardhome/conf\n    restart: unless-stopped"
     },
     "nginx-proxy": {
       "name": "Nginx Proxy Manager",
@@ -255,8 +243,7 @@
       "credentials": {
         "username": "admin@example.com",
         "password": "changeme"
-      },
-      "openMode": "internal"
+      }
     },
     "gitea": {
       "name": "Gitea",
@@ -267,7 +254,6 @@
       "image": "gitea/gitea:latest",
       "official": true,
       "compose": "services:\n  gitea:\n    image: gitea/gitea:latest\n    container_name: gitea\n    ports:\n      - '3000:3000'\n      - '2222:22'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - /etc/timezone:/etc/timezone:ro\n      - /etc/localtime:/etc/localtime:ro\n    environment:\n      - USER_UID=${USER_UID}\n      - USER_GID=${USER_GID}\n    restart: unless-stopped",
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "USER_UID",
         "gidEnv": "USER_GID"
@@ -285,7 +271,6 @@
       "env": {
         "PROJECTS_PATH": "${CONFIG_PATH}/projects"
       },
-      "openMode": "internal",
       "configRef": "configs/codeserver.config.json",
       "runtimeIdentity": {
         "uidEnv": "PUID",
@@ -300,8 +285,7 @@
       "port": 9000,
       "image": "portainer/portainer-ce:latest",
       "official": true,
-      "compose": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    ports:\n      - '9000:9000'\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  portainer:\n    image: portainer/portainer-ce:latest\n    container_name: portainer\n    ports:\n      - '9000:9000'\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped"
     },
     "vaultwarden": {
       "name": "Vaultwarden",
@@ -311,8 +295,7 @@
       "port": 8082,
       "image": "vaultwarden/server:latest",
       "official": true,
-      "compose": "services:\n  vaultwarden:\n    image: vaultwarden/server:latest\n    container_name: vaultwarden\n    ports:\n      - '8082:80'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - WEBSOCKET_ENABLED=true\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  vaultwarden:\n    image: vaultwarden/server:latest\n    container_name: vaultwarden\n    ports:\n      - '8082:80'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    environment:\n      - WEBSOCKET_ENABLED=true\n    restart: unless-stopped"
     },
     "grafana": {
       "name": "Grafana",
@@ -324,7 +307,6 @@
       "official": true,
       "compose": "services:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    ports:\n      - '3001:3000'\n    volumes:\n      - ${CONFIG_PATH}/data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_USER=${ADMIN_USER}\n      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}\n    restart: unless-stopped",
       "env": {},
-      "openMode": "internal",
       "configRef": "configs/grafana.config.json"
     },
     "prometheus": {
@@ -336,7 +318,6 @@
       "image": "prom/prometheus:latest",
       "official": true,
       "compose": "services:\n  prometheus:\n    image: prom/prometheus:latest\n    container_name: prometheus\n    ports:\n      - '9090:9090'\n    volumes:\n      - ${CONFIG_PATH}/config:/etc/prometheus\n      - ${CONFIG_PATH}/data:/prometheus\n    restart: unless-stopped",
-      "openMode": "internal",
       "configRef": "configs/prometheus.config.json"
     },
     "uptime-kuma": {
@@ -347,8 +328,7 @@
       "port": 3002,
       "image": "louislam/uptime-kuma:latest",
       "official": true,
-      "compose": "services:\n  uptime-kuma:\n    image: louislam/uptime-kuma:latest\n    container_name: uptime-kuma\n    ports:\n      - '3002:3001'\n    volumes:\n      - ${CONFIG_PATH}/data:/app/data\n    restart: unless-stopped",
-      "openMode": "internal"
+      "compose": "services:\n  uptime-kuma:\n    image: louislam/uptime-kuma:latest\n    container_name: uptime-kuma\n    ports:\n      - '3002:3001'\n    volumes:\n      - ${CONFIG_PATH}/data:/app/data\n    restart: unless-stopped"
     },
     "matrix-synapse": {
       "name": "Matrix",
@@ -405,7 +385,6 @@
       "official": true,
       "compose": "services:\n  handbrake:\n    image: jlesage/handbrake:latest\n    container_name: handbrake\n    ports:\n      - '5817:5800'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${CONFIG_PATH}/storage:/storage\n      - ${CONFIG_PATH}/watch:/watch\n      - ${CONFIG_PATH}/output:/output\n    environment:\n      - TZ=${TZ}\n      - VNC_PASSWORD=${VNC_PASSWORD}\n      - KEEP_APP_RUNNING=1\n    restart: unless-stopped",
       "env": {},
-      "openMode": "internal",
       "configRef": "configs/handbrake.config.json",
       "arch": [
         "amd64"
@@ -421,7 +400,6 @@
       "official": true,
       "compose": "services:\n  n8n:\n    image: docker.n8n.io/n8nio/n8n:latest\n    container_name: n8n\n    ports:\n      - '5678:5678'\n    volumes:\n      - ${CONFIG_PATH}/data:/home/node/.n8n\n    environment:\n      - TZ=${TZ}\n      - GENERIC_TIMEZONE=${TZ}\n      - N8N_SECURE_COOKIE=false\n    restart: unless-stopped",
       "env": {},
-      "openMode": "internal",
       "arch": [
         "amd64",
         "arm64"
@@ -463,7 +441,6 @@
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal",
       "runtimeIdentity": {
         "uidEnv": "UID",
         "gidEnv": "GID"
@@ -481,7 +458,6 @@
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal",
       "arch": [
         "amd64"
       ]
@@ -497,8 +473,80 @@
       "compose": "services:\n  kiwix:\n    image: ghcr.io/kiwix/kiwix-serve:latest\n    container_name: kiwix\n    entrypoint: [\"/bin/sh\", \"-c\"]\n    command:\n      - \"if ! ls /data/*.zim >/dev/null 2>&1; then echo 'Kiwix: sembrando ZIM demo (primer arranque)...'; wget -O /data/demo.zim.part 'https://download.kiwix.org/zim/wikipedia/wikipedia_en_100_mini_2026-04.zim' && mv /data/demo.zim.part /data/demo.zim || rm -f /data/demo.zim.part; fi; exec /usr/local/bin/kiwix-serve --port=8080 /data/*.zim\"\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${KIWIX_DATA_PATH}:/data\n    restart: unless-stopped",
       "env": {
         "KIWIX_DATA_PATH": "${CONFIG_PATH}/data"
+      }
+    },
+    "grocy": {
+      "name": "Grocy",
+      "description": "ERP para tu hogar: inventario y despensa con caducidades, listas de compra, recetas y tareas. Login inicial admin/admin (cámbialo).",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/grocy.svg",
+      "category": "homelab",
+      "port": 9283,
+      "image": "lscr.io/linuxserver/grocy:latest",
+      "official": true,
+      "compose": "services:\n  grocy:\n    image: lscr.io/linuxserver/grocy:latest\n    container_name: grocy\n    ports:\n      - '9283:80'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "env": {},
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
+    },
+    "mealie": {
+      "name": "Mealie",
+      "description": "Gestor de recetas y planificador de menús con listas de compra. Importa recetas desde URL. Login inicial changeme@example.com / MyPassword (cámbialo).",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/mealie.svg",
+      "category": "homelab",
+      "port": 9925,
+      "image": "ghcr.io/mealie-recipes/mealie:latest",
+      "official": true,
+      "compose": "services:\n  mealie:\n    image: ghcr.io/mealie-recipes/mealie:latest\n    container_name: mealie\n    ports:\n      - '9925:9000'\n    volumes:\n      - ${CONFIG_PATH}/data:/app/data\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - ALLOW_SIGNUP=false\n    restart: unless-stopped",
+      "env": {},
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
+    },
+    "tileserver": {
+      "name": "TileServer GL",
+      "description": "Servidor de mapas OpenStreetMap offline (vector). Arranca con un mapa-mundi de muestra; añade tu .mbtiles regional a la carpeta data y reinicia para tu zona.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/tileserver.svg",
+      "category": "homelab",
+      "port": 8080,
+      "image": "maptiler/tileserver-gl-light:latest",
+      "official": true,
+      "compose": "services:\n  tileserver:\n    image: maptiler/tileserver-gl-light:latest\n    container_name: tileserver\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped",
+      "env": {}
+    },
+    "lidarr": {
+      "name": "Lidarr",
+      "description": "Gestión automática de música (el *arr de tu colección musical).",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/lidarr.svg",
+      "category": "downloads",
+      "port": 8686,
+      "image": "linuxserver/lidarr:latest",
+      "official": true,
+      "compose": "services:\n  lidarr:\n    image: linuxserver/lidarr:latest\n    container_name: lidarr\n    ports:\n      - '8686:8686'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${MEDIA_PATH}/music:/music\n      - ${DOWNLOADS_PATH}:/downloads\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "env": {
+        "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads",
+        "MEDIA_PATH": "${CONFIG_PATH}/media"
       },
-      "openMode": "internal"
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
+    },
+    "jackett": {
+      "name": "Jackett",
+      "description": "Proxy de indexadores (Torznab/Newznab). Alternativa clásica a Prowlarr para apps que solo soportan la API de Jackett.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/jackett.svg",
+      "category": "downloads",
+      "port": 9117,
+      "image": "linuxserver/jackett:latest",
+      "official": true,
+      "compose": "services:\n  jackett:\n    image: linuxserver/jackett:latest\n    container_name: jackett\n    ports:\n      - '9117:9117'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n    restart: unless-stopped",
+      "runtimeIdentity": {
+        "uidEnv": "PUID",
+        "gidEnv": "PGID"
+      }
     }
   }
 }
