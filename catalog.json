@@ -481,7 +481,10 @@
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
       },
-      "openMode": "internal"
+      "openMode": "internal",
+      "arch": [
+        "amd64"
+      ]
     },
     "kiwix": {
       "name": "Kiwix",
