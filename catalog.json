@@ -150,7 +150,8 @@
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
-      }
+      },
+      "configRef": "configs/qbittorrent.config.json"
     },
     "sonarr": {
       "name": "Sonarr",
