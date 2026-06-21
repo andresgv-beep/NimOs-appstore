@@ -280,7 +280,7 @@
       "port": 8443,
       "image": "linuxserver/code-server:latest",
       "official": true,
-      "compose": "services:\n  codeserver:\n    image: linuxserver/code-server:latest\n    container_name: codeserver\n    ports:\n      - '8443:8443'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${PROJECTS_PATH}:/projects\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - PASSWORD=${PASSWORD}\n    restart: unless-stopped",
+      "compose": "services:\n  codeserver:\n    image: linuxserver/code-server:latest\n    container_name: codeserver\n    ports:\n      - '${CODE_PORT}:8443'\n    volumes:\n      - ${CONFIG_PATH}/config:/config\n      - ${PROJECTS_PATH}:/projects\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - PASSWORD=${PASSWORD}\n    restart: unless-stopped",
       "env": {
         "PROJECTS_PATH": "${CONFIG_PATH}/projects"
       },
