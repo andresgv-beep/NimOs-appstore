@@ -239,11 +239,7 @@
       "port": 81,
       "image": "jc21/nginx-proxy-manager:latest",
       "official": true,
-      "compose": "services:\n  nginx-proxy:\n    image: jc21/nginx-proxy-manager:latest\n    container_name: nginx-proxy\n    ports:\n      - '80:80'\n      - '81:81'\n      - '443:443'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - ${CONFIG_PATH}/letsencrypt:/etc/letsencrypt\n    restart: unless-stopped",
-      "credentials": {
-        "username": "admin@example.com",
-        "password": "changeme"
-      }
+      "compose": "services:\n  nginx-proxy:\n    image: jc21/nginx-proxy-manager:latest\n    container_name: nginx-proxy\n    ports:\n      - '80:80'\n      - '81:81'\n      - '443:443'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - ${CONFIG_PATH}/letsencrypt:/etc/letsencrypt\n    restart: unless-stopped"
     },
     "gitea": {
       "name": "Gitea",
@@ -477,7 +473,7 @@
     },
     "grocy": {
       "name": "Grocy",
-      "description": "ERP para tu hogar: inventario y despensa con caducidades, listas de compra, recetas y tareas. Grocy trae un usuario por defecto (admin/admin) que debes cambiar nada más entrar (menú de usuario).",
+      "description": "ERP para tu hogar: inventario y despensa con caducidades, listas de compra, recetas y tareas. Cambia las credenciales por defecto nada más entrar (menú de usuario).",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/grocy.svg",
       "category": "homelab",
       "port": 9283,
@@ -488,11 +484,15 @@
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
+      },
+      "credentials": {
+        "username": "admin",
+        "password": "admin"
       }
     },
     "mealie": {
       "name": "Mealie",
-      "description": "Gestor de recetas y planificador de menús con listas de compra. Importa recetas desde URL. Mealie te muestra sus credenciales por defecto (changeme@example.com / MyPassword) en el primer acceso; cámbialas en Ajustes de usuario nada más entrar.",
+      "description": "Gestor de recetas y planificador de menús con listas de compra. Importa recetas desde URL. Cambia las credenciales por defecto en Ajustes de usuario nada más entrar.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/mealie.svg",
       "category": "homelab",
       "port": 9925,
@@ -503,6 +503,10 @@
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
+      },
+      "credentials": {
+        "username": "changeme@example.com",
+        "password": "MyPassword"
       }
     },
     "tileserver": {
