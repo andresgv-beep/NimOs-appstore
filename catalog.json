@@ -492,19 +492,18 @@
     },
     "mealie": {
       "name": "Mealie",
-      "description": "Gestor de recetas y planificador de menús con listas de compra. Importa recetas desde URL. Eliges tu email y contraseña de admin al instalar.",
+      "description": "Gestor de recetas y planificador de menús con listas de compra. Importa recetas desde URL. Mealie te muestra sus credenciales por defecto (changeme@example.com / MyPassword) en el primer acceso; cámbialas en Ajustes de usuario nada más entrar.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/mealie.svg",
       "category": "homelab",
       "port": 9925,
       "image": "ghcr.io/mealie-recipes/mealie:latest",
       "official": true,
-      "compose": "services:\n  mealie:\n    image: ghcr.io/mealie-recipes/mealie:latest\n    container_name: mealie\n    ports:\n      - '9925:9000'\n    volumes:\n      - ${CONFIG_PATH}/data:/app/data\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - ALLOW_SIGNUP=false\n      - DEFAULT_EMAIL=${DEFAULT_EMAIL}\n      - DEFAULT_PASSWORD=${DEFAULT_PASSWORD}\n    restart: unless-stopped",
+      "compose": "services:\n  mealie:\n    image: ghcr.io/mealie-recipes/mealie:latest\n    container_name: mealie\n    ports:\n      - '9925:9000'\n    volumes:\n      - ${CONFIG_PATH}/data:/app/data\n    environment:\n      - PUID=${PUID}\n      - PGID=${PGID}\n      - TZ=${TZ}\n      - ALLOW_SIGNUP=false\n    restart: unless-stopped",
       "env": {},
       "runtimeIdentity": {
         "uidEnv": "PUID",
         "gidEnv": "PGID"
-      },
-      "configRef": "configs/mealie.config.json"
+      }
     },
     "tileserver": {
       "name": "TileServer GL",
