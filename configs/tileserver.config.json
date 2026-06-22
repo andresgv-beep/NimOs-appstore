@@ -1,0 +1,15 @@
+{
+  "configVersion": 1,
+  "seedFiles": [
+    {
+      "path": "data/config.json",
+      "skipIfExists": true,
+      "content": "{\n  \"options\": {\n    \"paths\": {\n      \"root\": \"/usr/src/app/node_modules/tileserver-gl-styles\",\n      \"fonts\": \"fonts\",\n      \"sprites\": \"sprites\",\n      \"styles\": \"styles\",\n      \"mbtiles\": \"/data\",\n      \"pmtiles\": \"/data\"\n    },\n    \"serveAllFonts\": true\n  },\n  \"styles\": {},\n  \"data\": {}\n}\n"
+    },
+    {
+      "path": "data/LEEME-mapas.txt",
+      "skipIfExists": true,
+      "content": "TileServer GL en NimOS - como anadir tus mapas\n================================================\n\nEste servidor ya trae un config.json preparado. Los ESTILOS, FUENTES y SPRITES\nse cargan desde la propia imagen; tus DATOS (mapas) van en esta carpeta /data.\n\nANADIR UN MAPA\n--------------\n1) Suelta tu tileset en /data:\n     /data/mi-region.pmtiles        (o .mbtiles)\n\n2) Edita /data/config.json y anade una entrada en \"data\" y otra en \"styles\":\n\n     \"styles\": {\n       \"mi-region\": { \"style\": \"osm-bright/style.json\" }\n     },\n     \"data\": {\n       \"mi-region\": { \"pmtiles\": \"mi-region.pmtiles\" }\n     }\n\n   (para .mbtiles usa  \"mbtiles\": \"mi-region.mbtiles\"  en vez de \"pmtiles\")\n\n3) Reinicia el contenedor (NimHealth -> Task Manager).\n\nPara VARIOS mapas, repite con claves distintas (mi-region, otra-zona, ...).\n\nIMPORTANTE - el ESTILO debe casar con el ESQUEMA del tileset\n------------------------------------------------------------\n  - Estilos incluidos (osm-bright, basic-preview, dark-matter, positron...)\n    => esperan esquema OpenMapTiles. Van con datos de MapTiler/OpenMapTiles\n       o generados con tilemaker (perfil openmaptiles).\n  - PMTiles de Protomaps usan OTRO esquema => NO renderizan con osm-bright.\n    Necesitas un estilo de Protomaps (github.com/protomaps/basemaps): dejalo\n    en /data/styles/ y apuntalo en \"style\".\n\nDE DONDE SACAR MAPAS (gratis)\n-----------------------------\n  - Protomaps (PMTiles, facil de recortar tu zona):\n      pmtiles extract https://build.protomaps.com/AAAAMMDD.pmtiles \\\n        mi-region.pmtiles --bbox=LON_MIN,LAT_MIN,LON_MAX,LAT_MAX\n    (binario \"pmtiles\": github.com/protomaps/go-pmtiles/releases)\n  - Extractos .mbtiles regionales (MapTiler/OpenMapTiles) si los consigues.\n\nTRUCO\n-----\nSi apuntas en config.json a un fichero que aun no has soltado, el server puede\nno arrancar. Suelta SIEMPRE el fichero antes de reiniciar. (Si prefieres\ntolerancia, anade  --ignore-missing-files  al \"command\" del compose.)\n"
+    }
+  ]
+}
