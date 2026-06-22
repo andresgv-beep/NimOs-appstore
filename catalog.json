@@ -511,14 +511,15 @@
     },
     "tileserver": {
       "name": "TileServer GL",
-      "description": "Servidor de mapas OpenStreetMap offline (vector). Arranca con un mapa-mundi de muestra; añade tu .mbtiles regional a la carpeta data y reinicia para tu zona.",
+      "description": "Servidor de mapas OpenStreetMap offline (vector). Trae un config.json listo para alojar varios mapas: suelta tus tilesets (.pmtiles/.mbtiles) en la carpeta data, anadelos en config.json (mira el LEEME) y reinicia. Estilos y fuentes van incluidos en la imagen.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/tileserver.svg",
       "category": "homelab",
       "port": 8080,
       "image": "maptiler/tileserver-gl-light:latest",
       "official": true,
       "compose": "services:\n  tileserver:\n    image: maptiler/tileserver-gl-light:latest\n    container_name: tileserver\n    ports:\n      - '8080:8080'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped",
-      "env": {}
+      "env": {},
+      "configRef": "configs/tileserver.config.json"
     },
     "lidarr": {
       "name": "Lidarr",
