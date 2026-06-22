@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="tsr"><rect x="40" y="40" width="432" height="432" rx="72"/></clipPath>
+  </defs>
+  <g clip-path="url(#tsr)">
+    <!-- agua -->
+    <rect x="40" y="40" width="432" height="432" fill="#2f7ce0"/>
+    <!-- tierra (costa ondulada) -->
+    <path d="M40 472 L40 250 C 120 215 170 305 270 262 C 350 228 415 262 472 232 L472 472 Z" fill="#2bb673"/>
+    <!-- isla pequeña -->
+    <path d="M150 110 C 195 95 235 120 225 160 C 218 192 165 200 138 172 C 116 150 120 122 150 110 Z" fill="#2bb673"/>
+    <!-- detalle de tierra más oscuro -->
+    <path d="M40 472 L40 360 C 110 345 150 400 220 390 C 300 379 360 420 472 392 L472 472 Z" fill="#23a065"/>
+    <!-- ruta punteada -->
+    <path d="M95 415 C 190 350 175 250 285 215 C 360 192 388 140 420 100" fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" stroke-dasharray="0 33" opacity="0.95"/>
+    <!-- costuras de tiles 3x3 -->
+    <g stroke="#10468f" stroke-width="3" opacity="0.28">
+      <line x1="184" y1="40" x2="184" y2="472"/>
+      <line x1="328" y1="40" x2="328" y2="472"/>
+      <line x1="40" y1="184" x2="472" y2="184"/>
+      <line x1="40" y1="328" x2="472" y2="328"/>
+    </g>
+  </g>
+  <!-- marco redondeado -->
+  <rect x="40" y="40" width="432" height="432" rx="72" fill="none" stroke="#10468f" stroke-width="6" opacity="0.4"/>
+  <!-- pin de ubicación -->
+  <path d="M300 168 C 348 168 384 205 384 252 C 384 318 300 384 300 384 C 300 384 216 318 216 252 C 216 205 252 168 300 168 Z" fill="#e8553d" stroke="#ffffff" stroke-width="12"/>
+  <circle cx="300" cy="250" r="32" fill="#ffffff"/>
+</svg>
