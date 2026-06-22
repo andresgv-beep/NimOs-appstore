@@ -511,7 +511,7 @@
     },
     "tileserver": {
       "name": "TileServer GL",
-      "description": "Servidor de mapas OpenStreetMap offline (vector). Trae un config.json listo para alojar varios mapas: suelta tus tilesets (.pmtiles/.mbtiles) en la carpeta data, anadelos en config.json (mira el LEEME) y reinicia. Estilos y fuentes van incluidos en la imagen.",
+      "description": "Servidor de mapas OpenStreetMap offline (vector). Arranca con un mapa de muestra (autoconfig). Para alojar tus propios mapas -y varios- tienes una plantilla lista en la carpeta data (config.example.json): anade tus tilesets, renombrala a config.json y reinicia. Mira el LEEME.",
       "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/tileserver.svg",
       "category": "homelab",
       "port": 8080,
