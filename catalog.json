@@ -445,7 +445,7 @@
     "pinchflat": {
       "name": "Pinchflat",
       "description": "Archivador de canales y playlists de YouTube (yt-dlp). Librería compatible con Jellyfin/Plex/Kodi.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pinchflat.svg",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pinchflat.webp",
       "category": "downloads",
       "port": 8945,
       "image": "ghcr.io/kieraneglin/pinchflat:latest",
