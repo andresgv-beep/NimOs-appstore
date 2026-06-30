@@ -552,6 +552,19 @@
         "uidEnv": "PUID",
         "gidEnv": "PGID"
       }
+    },
+    "downtify": {
+      "name": "Downtify",
+      "description": "Descargador de musica self-hosted. Pega un enlace de Spotify (cancion, album o playlist) y obtienes el audio etiquetado con caratula y metadatos. Resuelve los datos desde Spotify y baja el audio de YouTube Music (yt-dlp). Apunta la carpeta de descargas a tu libreria de musica para que aparezca en Jellyfin/Navidrome. Uso personal.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/downtify.svg",
+      "category": "downloads",
+      "port": 8000,
+      "image": "ghcr.io/henriquesebastiao/downtify:latest",
+      "official": true,
+      "compose": "services:\n  downtify:\n    image: ghcr.io/henriquesebastiao/downtify:latest\n    container_name: downtify\n    ports:\n      - '8000:8000'\n    volumes:\n      - ${DOWNLOADS_PATH}:/downloads\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped",
+      "env": {
+        "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
+      }
     }
   }
 }
