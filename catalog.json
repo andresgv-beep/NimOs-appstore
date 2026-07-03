@@ -445,7 +445,7 @@
     "pinchflat": {
       "name": "Pinchflat",
       "description": "Archivador de canales y playlists de YouTube (yt-dlp). Librería compatible con Jellyfin/Plex/Kodi.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pinchflat.webp",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/pinchflat.svg",
       "category": "downloads",
       "port": 8945,
       "image": "ghcr.io/kieraneglin/pinchflat:latest",
@@ -556,7 +556,7 @@
     "downtify": {
       "name": "Downtify",
       "description": "Descargador de musica self-hosted. Pega un enlace de Spotify (cancion, album o playlist) y obtienes el audio etiquetado con caratula y metadatos. Resuelve los datos desde Spotify y baja el audio de YouTube Music (yt-dlp). Apunta la carpeta de descargas a tu libreria de musica para que aparezca en Jellyfin/Navidrome. Uso personal.",
-      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/Downtify.webp",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/downtify.svg",
       "category": "downloads",
       "port": 8000,
       "image": "ghcr.io/henriquesebastiao/downtify:latest",
@@ -564,6 +564,20 @@
       "compose": "services:\n  downtify:\n    image: ghcr.io/henriquesebastiao/downtify:latest\n    container_name: downtify\n    ports:\n      - '8000:8000'\n    volumes:\n      - ${DOWNLOADS_PATH}:/downloads\n      - ${CONFIG_PATH}/data:/data\n    restart: unless-stopped",
       "env": {
         "DOWNLOADS_PATH": "${CONFIG_PATH}/downloads"
+      }
+    },
+    "forgejo": {
+      "name": "Forgejo",
+      "description": "Forja Git auto-hospedada, ligera y centrada en la privacidad (fork comunitario de Gitea, impulsado por Codeberg). Repos, issues, pull requests, wiki, kanban, registro de paquetes y CI (Actions). Funciona con SQLite sin configuracion extra. Web en el puerto 3003 · SSH para git en el 2223. Version 15 fijada: recibe parches automaticamente; los saltos de version mayor se hacen a mano (recomendacion del proyecto).",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/forgejo.svg",
+      "category": "development",
+      "port": 3003,
+      "image": "codeberg.org/forgejo/forgejo:15",
+      "official": true,
+      "compose": "services:\n  forgejo:\n    image: codeberg.org/forgejo/forgejo:15\n    container_name: forgejo\n    ports:\n      - '3003:3000'\n      - '2223:22'\n    volumes:\n      - ${CONFIG_PATH}/data:/data\n      - /etc/timezone:/etc/timezone:ro\n      - /etc/localtime:/etc/localtime:ro\n    environment:\n      - USER_UID=${USER_UID}\n      - USER_GID=${USER_GID}\n    restart: unless-stopped",
+      "runtimeIdentity": {
+        "uidEnv": "USER_UID",
+        "gidEnv": "USER_GID"
       }
     }
   }
