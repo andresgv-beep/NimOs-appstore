@@ -579,6 +579,17 @@
         "uidEnv": "USER_UID",
         "gidEnv": "USER_GID"
       }
+    },
+    "wordpress": {
+      "name": "WordPress",
+      "description": "El CMS mas usado del mundo para crear blogs y webs. Stack completo de dos contenedores: WordPress + base de datos MariaDB, cableados entre si automaticamente. Al instalar eliges la contraseña interna de la base de datos y el asistente web de WordPress te guia en el resto (idioma, usuario admin, titulo del sitio). Combinado con la exposicion publica de NimOS (Caddy + DuckDNS) puedes servir tu web a internet desde tu propio NAS.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/wordpress.svg",
+      "category": "cloud",
+      "port": 8084,
+      "image": "wordpress:latest",
+      "official": true,
+      "configRef": "configs/wordpress.config.json",
+      "compose": "services:\n  wordpress:\n    image: wordpress:latest\n    container_name: wordpress\n    ports:\n      - '8084:80'\n    environment:\n      - WORDPRESS_DB_HOST=db\n      - WORDPRESS_DB_USER=wordpress\n      - WORDPRESS_DB_PASSWORD=${DB_PASSWORD}\n      - WORDPRESS_DB_NAME=wordpress\n    volumes:\n      - ${CONFIG_PATH}/html:/var/www/html\n    depends_on:\n      - db\n    restart: unless-stopped\n  db:\n    image: mariadb:11\n    container_name: wordpress_db\n    environment:\n      - MARIADB_DATABASE=wordpress\n      - MARIADB_USER=wordpress\n      - MARIADB_PASSWORD=${DB_PASSWORD}\n      - MARIADB_RANDOM_ROOT_PASSWORD=yes\n    volumes:\n      - ${CONFIG_PATH}/db:/var/lib/mysql\n    restart: unless-stopped"
     }
   }
 }
