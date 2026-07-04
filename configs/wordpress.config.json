@@ -1,0 +1,13 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "DB_PASSWORD",
+      "label": "Contraseña de la base de datos",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Contraseña interna entre WordPress y su base de datos. Elígela tú y guárdala · no la necesitarás en el día a día."
+    }
+  ]
+}
