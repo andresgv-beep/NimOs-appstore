@@ -1,0 +1,104 @@
+{
+  "configVersion": 1,
+  "configFields": [
+    {
+      "key": "SERVER_NAME",
+      "label": "Nombre del servidor",
+      "type": "text",
+      "required": true,
+      "default": "NimOSZomboid",
+      "hint": "Nombre público del servidor. Usa letras y números, sin espacios."
+    },
+    {
+      "key": "ADMIN_USERNAME",
+      "label": "Usuario administrador",
+      "type": "text",
+      "required": true,
+      "default": "admin",
+      "hint": "Usuario con el que entrarás como administrador dentro del juego."
+    },
+    {
+      "key": "ADMIN_PASSWORD",
+      "label": "Contraseña del administrador",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Contraseña de la cuenta administradora del servidor.",
+      "purpose": "secret"
+    },
+    {
+      "key": "SERVER_PASSWORD",
+      "label": "Contraseña para jugadores",
+      "type": "password",
+      "required": false,
+      "secret": true,
+      "default": "",
+      "hint": "Opcional. Déjala vacía para permitir el acceso sin contraseña.",
+      "purpose": "secret"
+    },
+    {
+      "key": "PZ_PORT",
+      "label": "Puerto principal del servidor",
+      "type": "number",
+      "required": true,
+      "default": "16261",
+      "validation": {
+        "type": "port"
+      },
+      "hint": "Puerto UDP principal al que se conectan los jugadores.",
+      "purpose": "network_port",
+      "protocol": "udp"
+    },
+    {
+      "key": "PZ_UDP_PORT",
+      "label": "Puerto UDP de jugadores",
+      "type": "number",
+      "required": true,
+      "default": "16262",
+      "validation": {
+        "type": "port"
+      },
+      "hint": "Puerto UDP adicional usado para las conexiones de jugadores.",
+      "purpose": "network_port",
+      "protocol": "udp"
+    },
+    {
+      "key": "RCON_PORT",
+      "label": "Puerto RCON interno",
+      "type": "number",
+      "required": true,
+      "default": "27015",
+      "validation": {
+        "type": "port"
+      },
+      "hint": "Puerto de administración. NimOS lo publica sólo en localhost.",
+      "purpose": "network_port",
+      "protocol": "tcp"
+    },
+    {
+      "key": "RCON_PASSWORD",
+      "label": "Contraseña RCON",
+      "type": "password",
+      "required": true,
+      "secret": true,
+      "hint": "Contraseña que usará la consola de administración de NimOS.",
+      "purpose": "secret"
+    },
+    {
+      "key": "MAX_PLAYERS",
+      "label": "Máximo de jugadores",
+      "type": "number",
+      "required": true,
+      "default": "16",
+      "hint": "Número máximo de jugadores simultáneos."
+    },
+    {
+      "key": "MAX_RAM",
+      "label": "Memoria RAM máxima",
+      "type": "text",
+      "required": true,
+      "default": "4096m",
+      "hint": "Memoria máxima para el servidor, por ejemplo 4096m u 8192m. Se recomiendan al menos 4 GB."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Project Zomboid Server</title>
+  <desc id="desc">A stylized zombie hand on a dark red background</desc>
+  <rect width="512" height="512" rx="96" fill="#241b1b"/>
+  <circle cx="256" cy="256" r="184" fill="#7f1d1d"/>
+  <path d="M164 355c-17-38-21-82-9-122l20-68c4-14 18-22 32-18 13 4 21 18 17 31l-12 40 29-99c4-14 19-22 33-18 13 4 21 18 17 32l-26 89 36-122c4-14 19-22 33-18 13 4 21 18 17 32l-34 116 29-97c4-14 19-22 33-18 13 4 21 18 17 32l-43 147 24-27c10-12 28-13 40-3 12 11 13 29 2 41l-66 73c-29 32-71 50-114 50h-15c-48 0-91-28-110-72z" fill="#d6c58f" stroke="#181313" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M211 218l-11 39m64-35l-13 45m65-37l-13 43m64-32l-11 37" stroke="#7f1d1d" stroke-width="13" stroke-linecap="round"/>
+  <path d="M174 376c48-27 107-31 158-10" fill="none" stroke="#181313" stroke-width="14" stroke-linecap="round"/>
+</svg>

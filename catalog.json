@@ -425,6 +425,29 @@
         }
       }
     },
+    "project-zomboid": {
+      "name": "Project Zomboid Server",
+      "description": "Servidor dedicado de Project Zomboid. Conéctate desde el juego a la IP del NAS y administra el servidor desde NimOS mediante la consola RCON.",
+      "icon": "https://raw.githubusercontent.com/andresgv-beep/NimOs-appstore/main/icons/project-zomboid.svg",
+      "category": "games",
+      "port": 16261,
+      "image": "renegademaster/zomboid-dedicated-server:latest",
+      "official": true,
+      "compose": "services:\n  project-zomboid:\n    image: renegademaster/zomboid-dedicated-server:latest\n    container_name: project-zomboid\n    stop_grace_period: 30s\n    ports:\n      - '${PZ_PORT}:${PZ_PORT}/udp'\n      - '${PZ_UDP_PORT}:${PZ_UDP_PORT}/udp'\n      - '127.0.0.1:${RCON_PORT}:${RCON_PORT}/tcp'\n    volumes:\n      - ${CONFIG_PATH}/server:/home/steam/ZomboidDedicatedServer\n      - ${CONFIG_PATH}/data:/home/steam/Zomboid\n    environment:\n      - TZ=${TZ}\n      - SERVER_NAME=${SERVER_NAME}\n      - ADMIN_USERNAME=${ADMIN_USERNAME}\n      - ADMIN_PASSWORD=${ADMIN_PASSWORD}\n      - SERVER_PASSWORD=${SERVER_PASSWORD}\n      - DEFAULT_PORT=${PZ_PORT}\n      - UDP_PORT=${PZ_UDP_PORT}\n      - RCON_PORT=${RCON_PORT}\n      - RCON_PASSWORD=${RCON_PASSWORD}\n      - MAX_PLAYERS=${MAX_PLAYERS}\n      - MAX_RAM=${MAX_RAM}\n      - PAUSE_ON_EMPTY=true\n      - PUBLIC_SERVER=true\n      - STEAM_VAC=true\n      - USE_STEAM=true\n    restart: unless-stopped",
+      "env": {},
+      "openMode": "game",
+      "configRef": "configs/project-zomboid.config.json",
+      "arch": [
+        "amd64"
+      ],
+      "game": {
+        "protocol": "udp",
+        "rcon": {
+          "passwordEnv": "RCON_PASSWORD",
+          "port": 27015
+        }
+      }
+    },
     "metube": {
       "name": "MeTube",
       "description": "Descargador de vídeo web (yt-dlp) para YouTube y cientos de sitios. Pega la URL y descarga al NAS.",
