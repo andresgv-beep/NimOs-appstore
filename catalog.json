@@ -419,6 +419,24 @@
       ],
       "game": {
         "protocol": "tcp",
+        "quickCommands": [
+          {
+            "label": "Jugadores",
+            "command": "list"
+          },
+          {
+            "label": "Hacer de día",
+            "command": "time set day"
+          },
+          {
+            "label": "Despejar clima",
+            "command": "weather clear"
+          },
+          {
+            "label": "Guardar mundo",
+            "command": "save-all"
+          }
+        ],
         "rcon": {
           "passwordEnv": "RCON_PASSWORD",
           "port": 25575
@@ -442,6 +460,24 @@
       ],
       "game": {
         "protocol": "udp",
+        "quickCommands": [
+          {
+            "label": "Jugadores",
+            "command": "players"
+          },
+          {
+            "label": "Guardar mundo",
+            "command": "save"
+          },
+          {
+            "label": "Ver opciones",
+            "command": "showoptions"
+          },
+          {
+            "label": "Ayuda",
+            "command": "help"
+          }
+        ],
         "rcon": {
           "passwordEnv": "RCON_PASSWORD",
           "port": 27015
